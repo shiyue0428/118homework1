@@ -1,0 +1,82 @@
+<!-- code by 史跃 -->    	
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{ padding:0; margin:0; line-height:100%;}
+body,h1,h2,h3,h4,h5,h6{ font-size:12px; font-family:Verdana, Geneva, sans-serif '宋体'; }
+ul,ol{ list-style:none;}
+a{ color:#000; text-decoration:none;}
+a img{ border:0;vertical-align:top;}
+i,em{ font-style:normal;}
+b,strong{ font-weight:normal;}
+input,textarea{outline:none;}
+img,input,select,textarea{vertical-align:top;}
+textarea{resize:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+.clearFix:after{ display:block; content:''; clear:both;}
+.clearFix{ zoom:1;}
+
+
+#box{width:300px; height:300px; border-radius: 50% ; border:1px #000 solid; margin:300px auto; position: relative; top:0; left:0;}
+.hou{width:8px; height:80px;  background: #000; position: absolute; top:70px; left:50%; margin-left: -4px; -webkit-transform-origin:center bottom;}
+.min{width:6px; height:100px;  background: #000; position: absolute; top:50px; left:50%; margin-left: -3px; -webkit-transform-origin:center bottom;}
+.sec{width:4px; height:130px;  background: #000; position: absolute; top:20px; left:50%; margin-left: -2px; -webkit-transform-origin:center bottom;}
+.s{width:4px; height:6px; position: absolute; top:0; left:50%; margin-left: -2px; background: #000; -webkit-transform-origin:center 150px;}
+.ds{width:8px; height:12px; position: absolute; top:0; left:50%; margin-left: -4px; background: #000; -webkit-transform-origin:center 150px;}
+#box em{position:absolute; top:15px; font-style:normal; width:30px; left:50%; margin-left:-15px; text-align:center;}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementsByTagName('div')[0];
+	var oHou=document.querySelector('#box .hou');
+	var oMin=document.querySelector('#box .min');
+	var oSec=document.querySelector('#box .sec');
+	var i=0;
+
+	for(var i=0; i<=60; i++){
+		
+		var oSp=document.createElement('span');
+		if(i%5==0){
+			oSp.className='ds'
+			var oEm=document.createElement('em');
+			if(i==0){
+				oEm.innerHTML = 12;
+			}else{
+				oEm.innerHTML = i/5;
+			}
+			oSp.appendChild(oEm);
+			oEm.style.WebkitTransform='rotate('+-i*6+'deg)';
+			
+		}else{
+			oSp.className='s'
+		}
+		
+		oBox.appendChild(oSp);
+		oSp.style.WebkitTransform='rotate('+i*6+'deg)'
+	}
+	
+	function tick(){
+		var oDate=new Date();
+		oHou.style.WebkitTransform='rotate('+(oDate.getHours()+oDate.getMinutes()/60)*30+'deg)';
+		oMin.style.WebkitTransform='rotate('+(oDate.getMinutes()+oDate.getSeconds()/60)*6+'deg)';
+		oSec.style.WebkitTransform='rotate('+oDate.getSeconds()*6+'deg)';
+	}
+	tick()
+	setInterval(tick,1000)
+
+};
+</script>
+</head>
+
+<body>
+<div id="box">
+	<div class="hou"></div>
+	<div class="min"></div>
+	<div class="sec"></div>
+</div>
+</body>
+</html>
